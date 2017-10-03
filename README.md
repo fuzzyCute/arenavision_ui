@@ -14,6 +14,6 @@ You need to install Ace Stream installed as well: install it by going the the fo
 To use this application all you have to do is to run the UI.py file with:
 python3 UI.py
 
-After opening the file, just select the game you want to watch on the left window, and then select the channel on the right window. After selecting the channel just click on the "Connect" Button and open the gaven link with Ace Stream.
+After opening the file, just select the game you want to watch on the left window, and then select the channel on the right window. After selecting the channel just click on the "Ligar" Button and open the gaven link with Ace Stream.
 
 # That's it, Enjoy :)
