@@ -11,16 +11,23 @@ def procura_jogo_command():
     lista_jogos.delete(0, END)
 
     for row in lista_todos_jogos[:-2]:
-        if jogo_text.get().upper() in row[4]:
-            lista_jogos.insert(END, main.format_string(row))
+        if len(row) is 6:
+            if jogo_text.get().upper() in row[4]:
+                lista_jogos.insert(END, main.format_string(row))
 
 def get_selected_links(event):
     global links_dos_jogos
     global canais
     canais = []
     lista_jogo_links.delete(0, END)
-    index = lista_jogos.curselection()[0]
-    jogoSelecionado = lista_todos_jogos[index][5].replace("\n", " ").split()
+    try:
+        index = lista_jogos.curselection()[0]
+    except:
+        index = 0
+    if len(lista_todos_jogos[index]) is 6:
+        jogoSelecionado = lista_todos_jogos[index][5].replace("\n", " ").split()
+    else:
+        jogoSelecionado = []
 
     if len(jogoSelecionado) is not 0:
         for i in jogoSelecionado:
@@ -34,7 +41,7 @@ def get_selected_links(event):
                     lista_jogo_links.insert(END,i + " - " + jogoSelecionado[jogoSelecionado.index(i) + 1])
                     canais.append(int(i))
     else:
-        lista_jogo_links.insert(END, "SEM LINKS PARA O JOGO")
+        lista_jogo_links.insert(END, "No Links for the Channel")
 
 
 def open_browser_with_link(event):
@@ -45,10 +52,7 @@ def open_browser_with_link(event):
 
 def ligar_jogo():
     # para abrir a aplicacao com o link obtido
-    if 1 <= canais[link_para_web] <= 9:
-        webbrowser.open_new_tab(main.get_Url("0" + str(canais[link_para_web])))
-    else:
-        webbrowser.open_new_tab(main.get_Url(canais[link_para_web]))
+    webbrowser.open_new_tab(main.get_Url(canais[link_para_web]))
 
 
 if __name__ == "__main__":
